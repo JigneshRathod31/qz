@@ -8,8 +8,8 @@
 
     <item
         android:id="@+id/nav_quizzes"
-        android:title="Your qzs"
-        android:icon="@drawable/ic_add" />
+        android:title="My qzs"
+        android:icon="@drawable/ic_add_round" />
 
     <item
         android:id="@+id/nav_profile"

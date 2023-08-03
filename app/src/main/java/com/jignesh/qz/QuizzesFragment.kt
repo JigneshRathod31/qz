@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -41,7 +42,7 @@ class QuizzesFragment : Fragment() {
         var view: View = inflater.inflate(R.layout.fragment_quizzes, container, false)
 
         rvQuizzes = view.findViewById(R.id.rv_quizzes)
-        btnCreateNewQz = view.findViewById(R.id.btn_create_new_qz)
+        btnCreateNewQz = view.findViewById(R.id.iv_create_new_qz)
 
         try {
             rvQuizzes!!.layoutManager = LinearLayoutManager(context)
@@ -49,34 +50,38 @@ class QuizzesFragment : Fragment() {
             rvQuizAdapter = RvQuizAdapter(alQuiz)
             rvQuizzes!!.adapter = rvQuizAdapter
 
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8))
+            rvQuizzes!!.addItemDecoration(DividerItemDecoration(context, LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false).orientation))
+
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
+
             rvQuizAdapter!!.notifyDataSetChanged()
         }catch (e: Exception){
             Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
         }
 
-//        btnCreateNewQz!!.setOnClickListener(View.OnClickListener{ view ->
-            // TODO: CREATE CreateQuizFragment fragment and uncomment it
-//            var fragmentManager: FragmentManager = requireFragmentManager()
-//            var fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-//            fragmentTransaction.replace(R.id.frame_layout_container, CreateQuizFragment())
-//            fragmentTransaction.commit()
-//        })
+        btnCreateNewQz!!.setOnClickListener(View.OnClickListener{ view ->
+            var fragmentManager: FragmentManager = requireFragmentManager()
+            var fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.frame_layout_container, QuizDetailsFragment())
+            fragmentTransaction.commit()
+        })
 
         return view
     }
