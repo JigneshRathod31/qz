@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_play_qz"
+        android:title="Play qz"
+        android:icon="@drawable/ic_play" />
+
+    <item
+        android:id="@+id/nav_quizzes"
+        android:title="Your qzs"
+        android:icon="@drawable/ic_add" />
+
+    <item
+        android:id="@+id/nav_profile"
+        android:title="Profile"
+        android:icon="@drawable/ic_profile" />
+
+</menu>
