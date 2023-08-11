@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/DayNightBackgroundStyle"
     tools:context=".QuizzesFragment">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -14,33 +15,16 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_quizzes"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_left_arrow"
-                android:contentDescription="Back arrow"
-                android:tooltipText="Back"
-                android:padding="8dp"
-                android:layout_marginRight="8dp" />
+            android:layout_height="wrap_content"
+            android:background="@color/main_color">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="My Quizzes"
-                android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="normal" />
+                style="@style/tvToolbarTitle"
+                android:text="My Quizzes" />
 
             <ImageView
                 android:id="@+id/iv_create_new_qz"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginRight="8dp"
-                android:padding="8dp"
-                android:background="@drawable/rounded_ripple_effect"
+                style="@style/ivToolbarIcon"
                 android:contentDescription="Create New qz"
                 android:tooltipText="Create New qz"
                 android:src="@drawable/ic_add" />
@@ -53,7 +37,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/app_bar_layout"
-        android:padding="16dp"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView

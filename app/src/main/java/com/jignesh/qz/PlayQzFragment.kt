@@ -28,6 +28,7 @@ class PlayQzFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        container?.removeAllViews()
         var view: View = inflater.inflate(R.layout.fragment_play_qz, container, false)
 
         return view

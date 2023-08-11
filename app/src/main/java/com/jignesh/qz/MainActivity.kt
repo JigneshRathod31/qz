@@ -2,6 +2,8 @@ package com.jignesh.qz
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.DocumentsContract.Root
+import android.sax.RootElement
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
@@ -17,10 +19,12 @@ class MainActivity : AppCompatActivity() {
 
         bottomNavigationView = findViewById(R.id.bottom_navigation_view)
 
+        loadFragment(PlayQzFragment(), true)
+
         bottomNavigationView!!.setOnNavigationItemSelectedListener { item ->
             when(item.itemId){
                 R.id.nav_play_qz -> {
-                    loadFragment(PlayQzFragment(), true)
+                    loadFragment(PlayQzFragment(), false)
                 }
 
                 R.id.nav_quizzes -> {
@@ -33,19 +37,20 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-
-        bottomNavigationView!!.selectedItemId = R.id.nav_profile
     }
 
-    fun loadFragment(fragment: Fragment, flag: Boolean){
+    fun loadFragment(fragment: Fragment, firstFragment: Boolean){
         var fragmentManager: FragmentManager = supportFragmentManager
         var fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
-        if (flag)
+        if (firstFragment){
             fragmentTransaction.add(R.id.frame_layout_container, fragment)
-        else
+        }
+        else{
             fragmentTransaction.replace(R.id.frame_layout_container, fragment)
+        }
 
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
     }
 }

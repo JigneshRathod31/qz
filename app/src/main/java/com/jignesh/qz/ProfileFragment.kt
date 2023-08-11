@@ -28,6 +28,7 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        container?.removeAllViews()
         var view: View = inflater.inflate(R.layout.fragment_profile, container, false)
 
         return view

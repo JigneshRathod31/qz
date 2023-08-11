@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
@@ -19,7 +20,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 var rvQuizzes: RecyclerView? = null
-var btnCreateNewQz: Button? = null
+var ivCreateNewQz: ImageView? = null
 var rvQuizAdapter: RvQuizAdapter? = null
 
 class QuizzesFragment : Fragment() {
@@ -39,10 +40,11 @@ class QuizzesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        container?.removeAllViews()
         var view: View = inflater.inflate(R.layout.fragment_quizzes, container, false)
 
         rvQuizzes = view.findViewById(R.id.rv_quizzes)
-        btnCreateNewQz = view.findViewById(R.id.iv_create_new_qz)
+        ivCreateNewQz = view.findViewById(R.id.iv_create_new_qz)
 
         try {
             rvQuizzes!!.layoutManager = LinearLayoutManager(context)
@@ -65,21 +67,17 @@ class QuizzesFragment : Fragment() {
             alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
             alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
             alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
-            alQuiz!!.add(QuizModel("KnowledgeQuiz", "123456", 8, "31/07/2023", 24))
 
             rvQuizAdapter!!.notifyDataSetChanged()
         }catch (e: Exception){
             Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show()
         }
 
-        btnCreateNewQz!!.setOnClickListener(View.OnClickListener{ view ->
-            var fragmentManager: FragmentManager = requireFragmentManager()
-            var fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        ivCreateNewQz!!.setOnClickListener(View.OnClickListener{ view ->
+            var fragmentManager: FragmentManager? = getFragmentManager()
+            var fragmentTransaction: FragmentTransaction = fragmentManager!!.beginTransaction()
             fragmentTransaction.replace(R.id.frame_layout_container, QuizDetailsFragment())
+            fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         })
 

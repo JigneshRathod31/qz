@@ -5,9 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+
+var btnAddQuestionOnQuizDetails: Button? = null
 
 class QuizDetailsFragment : Fragment() {
 
@@ -26,9 +31,18 @@ class QuizDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        container?.removeAllViews()
         var view: View = inflater.inflate(R.layout.fragment_quiz_details, container, false)
 
+        btnAddQuestionOnQuizDetails = view.findViewById(R.id.btn_add_question)
 
+        btnAddQuestionOnQuizDetails!!.setOnClickListener(View.OnClickListener { view ->
+            var fragmentManager: FragmentManager = requireFragmentManager()
+            var fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+            fragmentTransaction.replace(R.id.frame_layout_container, AddQuestionsFragment())
+            fragmentTransaction.addToBackStack(null)
+            fragmentTransaction.commit()
+        })
 
         return view
     }
