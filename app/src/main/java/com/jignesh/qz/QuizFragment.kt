@@ -1,20 +1,21 @@
 package com.jignesh.qz
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-
-lateinit var btnPlayQz: Button
+import androidx.viewpager.widget.ViewPager
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class PlayQzFragment : Fragment() {
+lateinit var viewPagerQuiz: ViewPager
+lateinit var quizViewPagerAdapter: DynamicQuizFragmentAdapter
+lateinit var alQuizFragments: ArrayList<DynamicQuizFragment>
+
+class QuizFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
@@ -26,22 +27,23 @@ class PlayQzFragment : Fragment() {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        container?.removeAllViews()
-        var view: View = inflater.inflate(R.layout.fragment_play_qz, container, false)
+        container!!.removeAllViews()
+        var view: View = inflater.inflate(R.layout.fragment_quiz, container, false)
 
-        btnPlayQz = view.findViewById(R.id.btn_play_qz)
+        viewPagerQuiz = view.findViewById(R.id.view_pager_quiz)
+        alQuizFragments = ArrayList()
+        quizViewPagerAdapter = DynamicQuizFragmentAdapter(requireFragmentManager(), alQuizFragments)
+        viewPagerQuiz.adapter = quizViewPagerAdapter
 
-        btnPlayQz.setOnClickListener(View.OnClickListener { view ->
-            var fragmentManager: FragmentManager = requireFragmentManager()
-            var fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.frame_layout_container, QuizFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
-        })
+        for (i in 1..4){
+            alQuizFragments.add(DynamicQuizFragment.newInstance())
+        }
+        quizViewPagerAdapter.notifyDataSetChanged()
 
         return view
     }
@@ -49,7 +51,7 @@ class PlayQzFragment : Fragment() {
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            PlayQzFragment().apply {
+            QuizFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

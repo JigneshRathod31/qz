@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".QuizFragment"
     style="@style/DayNightBackgroundStyle"
-    tools:context=".AddQuestionsFragment">
+    android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout_add_questions"
+        android:id="@+id/app_bar_layout_quiz"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_add_questions"
+            android:id="@+id/toolbar_quiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/main_color">
@@ -27,7 +27,7 @@
                 android:layout_gravity="start" />
 
             <TextView
-                android:text="Questions"
+                android:text="Play qz!"
                 style="@style/tvToolbarTitle"
                 android:layout_gravity="center" />
 
@@ -37,43 +37,38 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/view_pager_questions"
+        android:id="@+id/view_pager_quiz"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/app_bar_layout_add_questions"
-        android:layout_marginBottom="80dp"/>
+        android:layout_below="@+id/app_bar_layout_quiz"
+        android:layout_marginBottom="160dp"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="64dp"
+        android:layout_height="144dp"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingHorizontal="8dp"
-        style="@style/DayNightSecondaryBackgroundStyle"
-        android:weightSum="5">
+        android:paddingHorizontal="24dp">
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tab_layout_questions"
-            android:layout_width="0dp"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_previous"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:layout_weight="4"
-            app:tabIndicator="@drawable/custom_tab_item"
-            app:tabTextAppearance="@style/TabLayoutStyle"
-            app:tabMode="scrollable" />
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/ic_left_arrow"
+            android:tooltipText="Previous"
+            app:tint="@color/white"
+            android:padding="0dp" />
 
-        <ImageButton
-            android:id="@+id/btn_add_question"
-            android:layout_width="0dp"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_next"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/main_color"
-            android:clickable="true"
-            android:foreground="?attr/selectableItemBackground"
-            android:padding="8dp"
-            android:src="@drawable/ic_add" />
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_left_arrow"
+            app:tint="@color/white"
+            android:padding="0dp" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>
