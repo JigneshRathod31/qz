@@ -19,10 +19,13 @@
             android:background="@color/main_color">
 
             <TextView
+                android:id="@+id/tv_cancel_qz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:padding="8dp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:text="Cancel"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -34,11 +37,14 @@
                 android:text="Create qz" />
 
             <TextView
+                android:id="@+id/tv_save_qz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginRight="16dp"
                 android:padding="8dp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
                 android:text="Save"
                 android:textColor="@color/white"
                 android:textSize="18sp"
@@ -60,6 +66,13 @@
             android:orientation="vertical"
             style="@style/DayNightSecondaryBackgroundStyle"
             android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quiz Details"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -122,12 +135,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             style="@style/DayNightSecondaryBackgroundStyle"
-            android:layout_marginTop="16dp"
-            android:padding="16dp">
+            android:layout_marginTop="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="16dp"
                 android:text="Questions"
                 android:textSize="18sp"
                 android:textStyle="bold" />

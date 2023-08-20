@@ -74,11 +74,7 @@ class QuizzesFragment : Fragment() {
         }
 
         ivCreateNewQz!!.setOnClickListener(View.OnClickListener{ view ->
-            var fragmentManager: FragmentManager? = getFragmentManager()
-            var fragmentTransaction: FragmentTransaction = fragmentManager!!.beginTransaction()
-            fragmentTransaction.replace(R.id.frame_layout_container, QuizDetailsFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            Utils.replaceFragment(R.id.frame_layout_container, QuizDetailsFragment(), requireFragmentManager())
         })
 
         return view

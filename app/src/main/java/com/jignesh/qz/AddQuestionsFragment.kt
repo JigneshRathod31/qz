@@ -1,5 +1,6 @@
 package com.jignesh.qz
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,19 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import kotlinx.coroutines.flow.callbackFlow
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-var viewPagerQuestions: ViewPager? = null
-var tabLayoutQuestions: TabLayout? = null
-var iBtnAddQuestion: ImageButton? = null
-var dynamicQuestionFragmentAdapter: DynamicQuestionFragmentAdapter? = null
-var alFragments: ArrayList<DynamicQuestionFragment>? = null
+lateinit var viewPagerQuestions: ViewPager
+lateinit var tabLayoutQuestions: TabLayout
+lateinit var alFragments: ArrayList<DynamicQuestionFragment>
+lateinit var dynamicQuestionFragmentAdapter: DynamicQuestionFragmentAdapter
+
+lateinit var ivBackIcon: ImageView
+lateinit var iBtnAddQuestion: ImageButton
 
 class AddQuestionsFragment : Fragment() {
     private var param1: String? = null
@@ -33,6 +38,7 @@ class AddQuestionsFragment : Fragment() {
         }
     }
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +49,7 @@ class AddQuestionsFragment : Fragment() {
         viewPagerQuestions = view.findViewById(R.id.view_pager_questions)
         tabLayoutQuestions = view.findViewById(R.id.tab_layout_questions)
         iBtnAddQuestion = view.findViewById(R.id.btn_add_question)
+        ivBackIcon = view.findViewById(R.id.iv_back_icon)
 
         alFragments = ArrayList()
         alFragments!!.add(DynamicQuestionFragment.newInstance())
@@ -72,6 +79,10 @@ class AddQuestionsFragment : Fragment() {
 
             dynamicQuestionFragmentAdapter!!.notifyDataSetChanged()
             viewPagerQuestions!!.currentItem = (alFragments!!.size - 1)
+        })
+
+        ivBackIcon.setOnClickListener(View.OnClickListener { view ->
+            activity?.supportFragmentManager?.popBackStack()
         })
 
         return view

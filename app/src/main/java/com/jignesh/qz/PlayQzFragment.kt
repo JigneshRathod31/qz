@@ -36,11 +36,7 @@ class PlayQzFragment : Fragment() {
         btnPlayQz = view.findViewById(R.id.btn_play_qz)
 
         btnPlayQz.setOnClickListener(View.OnClickListener { view ->
-            var fragmentManager: FragmentManager = requireFragmentManager()
-            var fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.frame_layout_container, QuizFragment())
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            Utils.replaceFragment(R.id.frame_layout_container, QuizFragment(), requireFragmentManager())
         })
 
         return view

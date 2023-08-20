@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.size
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
@@ -14,6 +17,9 @@ private const val ARG_PARAM2 = "param2"
 lateinit var viewPagerQuiz: ViewPager
 lateinit var quizViewPagerAdapter: DynamicQuizFragmentAdapter
 lateinit var alQuizFragments: ArrayList<DynamicQuizFragment>
+
+lateinit var fabPreviousQuestion: FloatingActionButton
+lateinit var fabNextQuestion: FloatingActionButton
 
 class QuizFragment : Fragment() {
     private var param1: String? = null
@@ -36,6 +42,9 @@ class QuizFragment : Fragment() {
         var view: View = inflater.inflate(R.layout.fragment_quiz, container, false)
 
         viewPagerQuiz = view.findViewById(R.id.view_pager_quiz)
+        fabPreviousQuestion = view.findViewById(R.id.fab_previous)
+        fabNextQuestion = view.findViewById(R.id.fab_next)
+
         alQuizFragments = ArrayList()
         quizViewPagerAdapter = DynamicQuizFragmentAdapter(requireFragmentManager(), alQuizFragments)
         viewPagerQuiz.adapter = quizViewPagerAdapter
@@ -44,6 +53,18 @@ class QuizFragment : Fragment() {
             alQuizFragments.add(DynamicQuizFragment.newInstance())
         }
         quizViewPagerAdapter.notifyDataSetChanged()
+
+        fabPreviousQuestion.setOnClickListener(View.OnClickListener { view ->
+            if (viewPagerQuiz.currentItem != 0){
+                viewPagerQuiz.currentItem = (viewPagerQuiz.currentItem - 1)
+            }
+        })
+
+        fabNextQuestion.setOnClickListener(View.OnClickListener { view ->
+            if (viewPagerQuiz.currentItem != viewPagerQuiz.size){
+                viewPagerQuiz.currentItem = (viewPagerQuiz.currentItem + 1)
+            }
+        })
 
         return view
     }
